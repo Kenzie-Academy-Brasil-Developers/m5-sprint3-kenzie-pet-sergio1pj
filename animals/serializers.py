@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Animal, Sex
+from .models import Animal, SexChoices
 from groups.models import Group
 from traits.models import Trait
 from groups.serializers import GroupSerializer
@@ -10,7 +10,7 @@ class AnimalSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=50)
     age = serializers.IntegerField()
     weight = serializers.DecimalField(max_digits=5, decimal_places=2)
-    sex = serializers.ChoiceField(choices=Sex.choices, default=Sex.Default)
+    sex = serializers.ChoiceField(choices=SexChoices.choices, default=SexChoices.Default)
     group = GroupSerializer()
     traits = TraitSerializer(many=True)
    
