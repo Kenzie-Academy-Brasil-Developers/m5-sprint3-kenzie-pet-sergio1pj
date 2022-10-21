@@ -13,6 +13,9 @@ class AnimalSerializer(serializers.Serializer):
     sex = serializers.ChoiceField(choices=SexChoices.choices, default=SexChoices.Default)
     group = GroupSerializer()
     traits = TraitSerializer(many=True)
+
+    def get_age_in_human_years(self, instance: Animal):
+        return instance.convert_dog_age_to_human_years()
    
     def create(self, obj: dict) -> None:
         group = obj.pop('group')
